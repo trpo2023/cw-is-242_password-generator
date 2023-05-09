@@ -1,36 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "libgen.h"
 
 int Getrand(int min, int max)
 {
     return (double)rand() / (RAND_MAX + 1.0) * (max - min) + min;
 }
 
-int Ui(int* dlin, int* up, int* down, int* spets, int* kolvo)
+libgen Ui(int* dlin, int* up, int* down, int* spets, int* kolvo)
 {
     char flag;
-
+    libgen data;
     printf("Write the password length (digit)\n");
     scanf("%d", &dlin);
 
     printf("Use capital letters?(y/n)\n");
     scanf("%c", &flag);
     if (flag == 'y')
+    {
         *up = 1;
+    }
+    else
+    {
+        *up = 0;
+    }
 
     printf("Use small letters letters?(y/n)\n");
     scanf("%c", &flag);
     if (flag == 'y')
-        down = 1;
+    {
+        *down = 1;
+    }
+    else
+    {
+        *down = 0;
+    }
 
     printf("Use special characters?(y/n)\n");
     scanf("%c", &flag);
     if (flag == 'y')
-        spets = 1;
+    {
+        *spets = 1;
+    }
+    else
+    {
+        *spets = 0;
+    }
 
     printf("Write down how many passwords you need to generate (digit)\n");
     scanf("%d", &kolvo);
+    
+    return data;
 }
 
 int Good(int* good, int dlin, int up, int down, int spets)
@@ -89,3 +110,15 @@ int Output(int* arr, int i, int dlin)
         printf("%c", arr[x]);
     printf("\n");
 }
+
+// int Total()
+// {
+//     int a;
+//     int b;
+//     int c;
+//     int d;
+//     int e;
+//     Ui(&a, &b, &c, &d, &e);
+//     char r[a];
+//     Good();
+// }
