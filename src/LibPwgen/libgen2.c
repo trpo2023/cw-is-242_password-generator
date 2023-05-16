@@ -10,29 +10,29 @@ int Getrand(int min, int max)
 
 libgen Ui( int x/*int* dlin, int* up, int* down, int* spets, int* kolvo*/)
 {
-    libgen*t;
+    libgen*t=malloc(sizeof(libgen)*10);
     char flag;
 
     printf("Write the password length (digit)\n");
-    scanf("%d", t->dlin);
+    scanf("%d", &t->dlin);
 
     printf("Use capital letters?(y/n)\n");
-    scanf("%c", &flag);
+    scanf(" %c", &flag);
     if (flag == 'y')
         t->up = 1;
 
     printf("Use small letters letters?(y/n)\n");
-    scanf("%c", &flag);
+    scanf(" %c", &flag);
     if (flag == 'y')
         t->down = 1;
 
     printf("Use special characters?(y/n)\n");
-    scanf("%c", &flag);
+    scanf(" %c", &flag);
     if (flag == 'y')
         t->spets = 1;
 
     printf("Write down how many passwords you need to generate (digit)\n");
-    scanf("%d", t->kolvo);
+    scanf(" %d", &t->kolvo);
 }
 
 int Good( int* good /*int dlin, int up, int down, int spets*/)
