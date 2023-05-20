@@ -11,8 +11,8 @@ typedef struct {
 
 } libgen;
 
-int Getrand(int min, int max);
-libgen Ui(int x /*int* dlin, int* up, int* down, int* spets, int* kolvo*/);
-int Good( int* good /*int dlin, int up, int down, int spets*/);
-int Generation(int* arr, /*int dlin, int kolvo,*/ int* good);
+int Getrand(int min, int max, double time, double pusk);
+void Ui(libgen*t);
+void Good( libgen*t);
+void Generation( libgen*t, int* good);
 int Output(int* arr, int i, int dlin);
