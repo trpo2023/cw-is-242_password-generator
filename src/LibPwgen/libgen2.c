@@ -1,20 +1,29 @@
+#include "libgen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libgen.h"
+#include <sys/time.h>
 
-int Getrand(int min, int max)
+int Getrand(int min, int max, double time, double pusk)
 {
+    srand(time + pusk);
     return (double)rand() / (RAND_MAX + 1.0) * (max - min) + min;
 }
 
-libgen Ui( int x/*int* dlin, int* up, int* down, int* spets, int* kolvo*/)
+double wtime()
 {
-    libgen*t=malloc(sizeof(libgen)*10);
+    struct timeval t;
+    gettimeofday(&t, NULL);
+    return (double)t.tv_sec + (double)t.tv_usec * 1E-6;
+}
+
+void Ui(libgen* t)
+{
+    t = malloc(sizeof(libgen) * 10);
     char flag;
 
     printf("Write the password length (digit)\n");
-    scanf("%d", &t->dlin);
+    scanf(" %d", &t->dlin);
 
     printf("Use capital letters?(y/n)\n");
     scanf(" %c", &flag);
@@ -33,53 +42,68 @@ libgen Ui( int x/*int* dlin, int* up, int* down, int* spets, int* kolvo*/)
 
     printf("Write down how many passwords you need to generate (digit)\n");
     scanf(" %d", &t->kolvo);
+    Good(t);
 }
 
-int Good( int* good /*int dlin, int up, int down, int spets*/)
+void Good(libgen* t)
 {
-     libgen*t;
-    for (int i = 91; i < 96; i++) {
+    int good[122];
+
+    for (int i = 33; i < 122; i++) {
+        good[i] = 1;
+    }
+
+    for (int i = 91; i <= 96; i++) {
         good[i] = 0;
     }
 
     if (t->up == 0) {
-        for (int i = 65; i < 90; i++) {
+        for (int i = 65; i <= 90; i++) {
             good[i] = 0;
         }
     }
 
     if (t->down == 0) {
-        for (int i = 97; i < 122; i++) {
+        for (int i = 97; i <= 122; i++) {
             good[i] = 0;
         }
     }
 
     if (t->spets == 0) {
-        for (int i = 33; i < 47; i++) {
+        for (int i = 33; i <= 47; i++) {
             good[i] = 0;
         }
 
-        for (int i = 58; i < 64; i++) {
+        for (int i = 58; i <= 64; i++) {
             good[i] = 0;
         }
     }
+    Generation(t, good);
 }
 
-int Generation(int* arr, /*int dlin, int kolvo,*/ int* good)
+void Generation(libgen* t, int* good)
 {
-    libgen*t;
+    double time = 0;
+    double pusk = 0;
+    int arr[t->dlin];
     int i = 0;
     int min = 33;
     int max = 122;
-    int tmp = Getrand(min, max);
+    time = wtime();
+    int tmp = Getrand(min, max, time, pusk);
+    pusk += 1;
 
     for (i = 1; i < t->kolvo + 1; i++) {
         for (int j = 0; j < t->dlin; j++) {
             while (good[tmp] == 0) {
-                tmp = Getrand(min, max);
+                time = wtime();
+                tmp = Getrand(min, max, time, pusk);
+                pusk += 1;
             }
             arr[j] = tmp;
-            tmp = Getrand(min, max);
+            time = wtime();
+            tmp = Getrand(min, max, time, pusk);
+            pusk += 1;
         }
 
         Output(arr, i, t->dlin);
