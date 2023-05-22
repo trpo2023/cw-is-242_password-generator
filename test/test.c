@@ -1,4 +1,4 @@
-#include "ctest.h"
+#include "../thirdparty/ctest.h"
 #include "../src/LibPwgen/libgen.h"
 #include <stdio.h>
 
