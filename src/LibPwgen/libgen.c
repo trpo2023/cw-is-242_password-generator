@@ -112,7 +112,7 @@ void Generation(libgen* t, int* good)
 
 int Output(int* arr, int i, int dlin)
 {
-    FILE  *file = fopen("Results.txt", "a");
+    FILE  *file = fopen("../Results-passwords/Results.txt", "a");
     fprintf(file, "Password №%d:\n ", i);
     printf("Password №%d:\n", i);
     for (int x = 0; x < dlin; x++)
