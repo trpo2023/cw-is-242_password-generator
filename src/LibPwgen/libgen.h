@@ -12,7 +12,7 @@ typedef struct {
 } libgen;
 
 int Getrand(int min, int max, double time, double pusk);
-void Ui(libgen*t);
+void Ui(libgen** t);
 void Good( libgen*t);
 void Generation( libgen*t, int* good);
 int Output(int* arr, int i, int dlin);

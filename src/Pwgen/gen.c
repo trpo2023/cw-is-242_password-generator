@@ -4,6 +4,6 @@
 int main() 
 {
     libgen *t;
-    Ui(t);
+    Ui(&t);
     return 0;
 }
