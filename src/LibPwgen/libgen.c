@@ -17,32 +17,32 @@ double wtime()
     return (double)t.tv_sec + (double)t.tv_usec * 1E-6;
 }
 
-void Ui(libgen* t)
+void Ui(libgen** t)
 {
-    t = malloc(sizeof(libgen) * 10);
+    *t = malloc(sizeof(libgen) * 10);
     char flag;
 
     printf("Write the password length (digit)\n");
-    scanf(" %d", &t->dlin);
+    scanf(" %d", &(*t)->dlin);
 
     printf("Use capital letters?(y/n)\n");
     scanf(" %c", &flag);
     if (flag == 'y')
-        t->up = 1;
+        (*t)->up = 1;
 
     printf("Use small letters letters?(y/n)\n");
     scanf(" %c", &flag);
     if (flag == 'y')
-        t->down = 1;
+        (*t)->down = 1;
 
     printf("Use special characters?(y/n)\n");
     scanf(" %c", &flag);
     if (flag == 'y')
-        t->spets = 1;
+        (*t)->spets = 1;
 
     printf("Write down how many passwords you need to generate (digit)\n");
-    scanf(" %d", &t->kolvo);
-    Good(t);
+    scanf(" %d", &(*t)->kolvo);
+    Good(*t);
 }
 
 void Good(libgen* t)
@@ -112,13 +112,19 @@ void Generation(libgen* t, int* good)
 
 int Output(int* arr, int i, int dlin)
 {
-    FILE  *file = fopen("Results.txt", "w");
+    FILE  *file = fopen("Results.txt", "a");
+    fprintf(file, "Password №%d:\n ", i);
     printf("Password №%d:\n", i);
     for (int x = 0; x < dlin; x++)
     {
         printf("%c", arr[x]);
-        fprintf(file, "%d %c\n", i, arr[x]);
+        fprintf(file, "%c", arr[x]);
     }
-    printf("\n");
+    for (int rev = 0; rev < 2; rev++)
+    {
+        printf("\n");
+        fprintf(file, "\n");
+    }
     fclose(file);
+    return 0;
 }
