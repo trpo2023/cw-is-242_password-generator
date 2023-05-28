@@ -49,10 +49,10 @@ $(OBJ_DIR)/%.o: %.c
 .PHONY: run clean test run_test
 
 run:
-	./bin/geometry
+	./bin/gen
 
 run_test:
-	./bin/geometry_test
+	./bin/test
 
 clean:
 	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*/*.[aod]
