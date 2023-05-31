@@ -1,8 +1,8 @@
 CC = gcc
 
-APP_NAME = gen
-LIB_NAME = libgen
-TEST_NAME = test
+APP_NAME = Pwgen
+LIB_NAME = LibPwgen
+TEST_NAME = pwgen_test
 
 CFLAGS = -Wall -Wextra -Werror 
 CPPFLAGS = -I src -MP -MMD
@@ -49,10 +49,10 @@ $(OBJ_DIR)/%.o: %.c
 .PHONY: run clean test run_test
 
 run:
-	./bin/gen
+	./bin/Pwgen
 
 run_test:
-	./bin/test
+	./bin/pwgen_test
 
 clean:
 	$(RM) $(APP_PATH) $(OBJ_DIR)/*/*/*.[aod]

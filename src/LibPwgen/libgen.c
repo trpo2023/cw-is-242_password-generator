@@ -113,8 +113,14 @@ void Generation(libgen* t, int* good)
 
 void Output(int* arr, int i, int dlin)
 {
+    FILE *file = fopen("RESULTS.txt", "w");
+    fprintf(file, "%d\n", i);
     printf("Password №%d:\n", i);
     for (int x = 0; x < dlin; x++)
+    {
         printf("%c", arr[x]);
+        fprintf("%c\n", arr[x]);
+    }
     printf("\n");
+    fclose(file);
 }
