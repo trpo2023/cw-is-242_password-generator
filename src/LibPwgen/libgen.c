@@ -19,7 +19,7 @@ double wtime()
 
 void Ui(libgen* t)
 {
-    t = malloc(sizeof(libgen) * 10);
+    t = malloc(sizeof(libgen) * t->kolvo *t->dlin );
     char flag;
 
     printf("Write the password length (digit)\n");
@@ -30,7 +30,7 @@ void Ui(libgen* t)
     if (flag == 'y')
         t->up = 1;
 
-    printf("Use small letters letters?(y/n)\n");
+    printf("Use small letters?(y/n)\n");
     scanf(" %c", &flag);
     if (flag == 'y')
         t->down = 1;
@@ -108,9 +108,10 @@ void Generation(libgen* t, int* good)
 
         Output(arr, i, t->dlin);
     }
+    free(t);
 }
 
-int Output(int* arr, int i, int dlin)
+void Output(int* arr, int i, int dlin)
 {
     printf("Password №%d:\n", i);
     for (int x = 0; x < dlin; x++)

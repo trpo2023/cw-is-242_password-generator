@@ -3,16 +3,17 @@
 #include <string.h>
 
 typedef struct {
-    int dlin ;
-    int up ;
-    int down ;
-    int spets ;
-    int kolvo ;
+int dlin ;
+int up ;
+int down ;
+int spets ;
+int kolvo ;
 
 } libgen;
 
 int Getrand(int min, int max, double time, double pusk);
-void Ui(libgen*t);
+void Ui(libgen* t);
 void Good( libgen*t);
 void Generation( libgen*t, int* good);
-int Output(int* arr, int i, int dlin);
+void Output(int* arr, int i, int dlin);
+double wtime();
