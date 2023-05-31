@@ -24,68 +24,68 @@ CTEST(wtime, returns_current_wall_time_in_seconds)
     ASSERT_TRUE(result1 <= result2);
 }
 
-/*CTEST(Ui, fills_libgen_structure_with_user_input_values)
-{
-    // Создал фиктивный входной поток с тестовыми значениями
-    char input[] = "8\ny\nn\ny\n5\n";
-    FILE* mockstdin = fmemopen(input, sizeof(input), "r");
-
-    // Перенаправляю stdin и захватываю stdout
-    FILE* realstdin = stdin;
-    stdin = mockstdin;
-    char output[1000];
-    FILE* mockstdout = fmemopen(output, sizeof(output), "w");
-    FILE* realstdout = stdout;
-    stdout = mockstdout;
-
-    // Вызов тестируемой функции
-    libgen* t;
-    Ui(&t);
-
-    // Восстановить стандартный ввод и стандартный вывод
-    stdin = realstdin;
-    fclose(mockstdin);
-    fflush(stdout);
-    stdout = realstdout;
-
-    // Проверяем правильность заполнения структуры
-    ASSERT_EQUAL(8, t.dlin);
-    ASSERT_EQUAL(1, t.up);
-    ASSERT_EQUAL(0, t.down);
-    ASSERT_EQUAL(1, t.spets);
-    ASSERT_EQUAL(5, t.kolvo);
-}
-*/
-
-// CTEST(Good, modifies_array_of_good_characters_according_to_libgen_structure)
+// CTEST(Ui, fills_libgen_structure_with_user_input_values)
 // {
-//     libgen t = { 8, 1, 0, 1, 5 };
+//     // Создал фиктивный входной поток с тестовыми значениями
+//     char input[] = "8\ny\nn\ny\n5\n";
+//     FILE* mockstdin = fmemopen(input, sizeof(input), "r");
 
-//     int good[122];
-//     for (int i = 33; i < 122; i++) {
-//         good[i] = 1;
-//     }
+//     // Перенаправляю stdin и захватываю stdout
+//     FILE* realstdin = stdin;
+//     stdin = mockstdin;
+//     char output[1000];
+//     FILE* mockstdout = fmemopen(output, sizeof(output), "w");
+//     FILE* realstdout = stdout;
+//     stdout = mockstdout;
 
-//     Good(&t);
+//     // Вызов тестируемой функции
+//     libgen *t = malloc(sizeof(libgen));
+//     Ui(t);
 
-//     ASSERT_FALSE(good['A']);
-//     ASSERT_TRUE(good['a']);
-//     ASSERT_TRUE(good['!']);
-//     ASSERT_TRUE(good['@']);
-//     ASSERT_TRUE(good['#']);
-//     ASSERT_TRUE(good['$']);
-//     ASSERT_TRUE(good['%']);
-//     ASSERT_TRUE(good['^']);
-//     ASSERT_TRUE(good['&']);
-//     ASSERT_TRUE(good['*']);
-//     ASSERT_FALSE(good['_']);
-//     ASSERT_FALSE(good['`']);
+//     // Восстановить стандартный ввод и стандартный вывод
+//     stdin = realstdin;
+//     fclose(mockstdin);
+//     fflush(stdout);
+//     stdout = realstdout;
 
-//     // Другие символы не должны быть изменены
-//     ASSERT_TRUE(good['B']);
-//     ASSERT_TRUE(good['z']);
-//     ASSERT_TRUE(good['~']);
+//     // Проверяем правильность заполнения структуры
+//     ASSERT_EQUAL(8, t->dlin);
+//     ASSERT_EQUAL(1, t->up);
+//     ASSERT_EQUAL(0, t->down);
+//     ASSERT_EQUAL(1, t->spets);
+//     ASSERT_EQUAL(5, t->kolvo);
 // }
+
+
+CTEST(Good, modifies_array_of_good_characters_according_to_libgen_structure)
+{
+    libgen t = { 8, 1, 0, 1, 5 };
+
+    int good[122];
+    for (int i = 33; i < 122; i++) {
+        good[i] = 1;
+    }
+
+    Good(&t);
+
+    ASSERT_FALSE(good['A']);
+    ASSERT_TRUE(good['a']);
+    ASSERT_TRUE(good['!']);
+    ASSERT_TRUE(good['@']);
+    ASSERT_TRUE(good['#']);
+    ASSERT_TRUE(good['$']);
+    ASSERT_TRUE(good['%']);
+    ASSERT_TRUE(good['^']);
+    ASSERT_TRUE(good['&']);
+    ASSERT_TRUE(good['*']);
+    ASSERT_FALSE(good['_']);
+    ASSERT_FALSE(good['`']);
+
+    // Другие символы не должны быть изменены
+    ASSERT_TRUE(good['B']);
+    ASSERT_TRUE(good['z']);
+    ASSERT_TRUE(good['~']);
+}
 
 
 int is_good_password(char* password, size_t len, int* good)
