@@ -3,7 +3,7 @@
 
 int main() 
 {
-    libgen *t;
-    Ui(&t);
+    libgen *t = malloc(sizeof(libgen));
+    Ui(t);
     return 0;
 }
