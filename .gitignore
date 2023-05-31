@@ -54,3 +54,4 @@ dkms.conf
 # Trash
 *.vscode
 bin/
+Results-passwords/
