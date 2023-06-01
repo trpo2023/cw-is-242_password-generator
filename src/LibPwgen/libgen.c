@@ -19,7 +19,7 @@ double wtime()
 
 void Ui(libgen* t)
 {
-    t = malloc(sizeof(libgen) * t->kolvo *t->dlin );
+    t = malloc(sizeof(libgen) * t->kolvo);
     char flag;
 
     printf("Write the password length (digit)\n");
@@ -47,7 +47,7 @@ void Ui(libgen* t)
 
 void Good(libgen* t)
 {
-    int good[122];
+    int good[123];
 
     for (int i = 33; i < 122; i++) {
         good[i] = 1;
