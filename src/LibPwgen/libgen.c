@@ -108,7 +108,7 @@ void Generation(libgen* t, int* good)
 
         Output(arr, i, t->dlin);
     }
-    free(t);
+    //free(t);
 }
 
 void Output(int* arr, int i, int dlin)
