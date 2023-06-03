@@ -1,11 +1,13 @@
 #include <stdio.h>
-#include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../thirdparty/ctest.h"
-#include "../src/LibPwgen/libgen.h"
+#include <sys/time.h>
 
-int remfile() {
+#include "../src/LibPwgen/libgen.h"
+#include "../thirdparty/ctest.h"
+
+int remfile()
+{
     if (remove("Results-passwords/Results.txt") == 0) {
         printf("File deleted successfully.\n");
     } else {
@@ -52,7 +54,7 @@ CTEST(generation_suite, test_generation)
     t->kolvo = 5;
 
     // Create an array good and fill it
-    int good[123] = { 0 };
+    int good[123] = {0};
     for (int i = 48; i <= 57; i++) {
         good[i] = 1; // numbers from 0 to 9
     }
@@ -66,7 +68,8 @@ CTEST(generation_suite, test_generation)
     // Execute the Generation function
     Generation(t, good);
 
-    // Checking for the existence of a file with the results of generating passwords
+    // Checking for the existence of a file with the results of generating
+    // passwords
     FILE* file = fopen("Results-passwords/Results.txt", "r+");
     ASSERT_NOT_NULL(file);
 
@@ -87,7 +90,7 @@ CTEST(generation_suite, test_generation)
 CTEST(Good, modifies_array_of_good_characters_according_to_libgen_structure)
 {
     remfile();
-    libgen t = { 8, 1, 0, 1, 5 };
+    libgen t = {8, 1, 0, 1, 5};
 
     int good[123];
     for (int i = 33; i <= 122; i++) {

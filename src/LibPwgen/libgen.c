@@ -1,8 +1,9 @@
-#include "libgen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+
+#include "libgen.h"
 
 int Getrand(int min, int max, double time, double pusk)
 {
@@ -108,21 +109,19 @@ void Generation(libgen* t, int* good)
 
         Output(arr, i, t->dlin);
     }
-    //free(t);
+    // free(t);
 }
 
 void Output(int* arr, int i, int dlin)
 {
-    FILE  *file = fopen("Results-passwords/Results.txt", "a");
+    FILE* file = fopen("Results-passwords/Results.txt", "a");
     fprintf(file, "Password №%d:\n ", i);
     printf("Password №%d:\n", i);
-    for (int x = 0; x < dlin; x++)
-    {
+    for (int x = 0; x < dlin; x++) {
         printf("%c", arr[x]);
         fprintf(file, "%c", arr[x]);
     }
-    for (int rev = 0; rev < 2; rev++)
-    {
+    for (int rev = 0; rev < 2; rev++) {
         printf("\n");
         fprintf(file, "\n");
     }

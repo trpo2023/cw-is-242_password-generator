@@ -1,9 +1,10 @@
 #include <stdio.h>
+
 #include "../LibPwgen/libgen.h"
 
-int main() 
+int main()
 {
-    libgen *t = malloc(sizeof(libgen));
+    libgen* t = malloc(sizeof(libgen));
     Ui(t);
     return 0;
 }
